@@ -1,16 +1,16 @@
 # JKFLIPFLOP-USING-IF-ELSE
 
-**AIM:** 
+*AIM:* 
 
 To implement  JK flipflop using verilog and validating their functionality using their functional tables
 
-**SOFTWARE REQUIRED:**
+*SOFTWARE REQUIRED:*
 
 Quartus prime
 
-**THEORY**
+*THEORY*
 
-**JK Flip-Flop**
+*JK Flip-Flop*
 
 JK flip-flop is the modified version of SR flip-flop. It operates with only positive clock transitions or negative clock transitions. The circuit diagram of JK flip-flop is shown in the following figure.
 
@@ -32,77 +32,31 @@ By using three variable K-Map, we can get the simplified expression for next sta
 
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=JQ(t)′+K′Q(t)Q(t+1)=JQ(t)′+K′Q(t)
 
-**Procedure**
+*Procedure*
+1.Type the program in Quartus software.
+2.Compile and run the program.
+3.Generate the RTL schematic and save the logic diagram.
+4.Create nodes for inputs and outputs to generate the timing diagram.
+5.For different input combinations generate the timing diagram.
+*PROGRAM*
 
-1. Go to quartus software.
-2. Set new environment.
-3. Type the code to implement SR flipflop using verilog and validating their functionality using their functional tables.
-4. Run the program.
-5. Give inputs in the waveform table.
-6. Run the program.
-
-**PROGRAM**
-
-```
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. 
-Developed by: GAUTHAM KRISHNA S
-RegisterNumber: 212223240036
-*/
-```
-
-```VHDL
-
-module JK(q, qb,j,k,clock,reset);
-    input j,k,clock,reset;
-    output reg q, qb;
-	 
-always @ (posedge (clock))
-
-    begin 
-        if (!reset)
-            begin
-               q <= q;
-               qb <=qb;
-            end   
-        
-else
-	begin
-		if(j==0&&k==0)
-			begin
-			q<=q;
-			qb<=qb;
-			end
-		else if(j!=k)
-			begin
-			q<=j;
-			qb<=k;
-			end
-		else if(j==1&&k==1)
-			begin
-			q<=~q;
-			qb<=~qb;
-			end
-	end
+module ex07(j,k,clk,q,qbar); 
+input j,k,clk; 
+output reg q,qbar;
+initial begin 
+q=1'b0; 
+q=1'b1; 
+end always @(posedge clk) 
+begin 
+q<=(j&~q)|(~k&q); 
+qbar<=~q; 
 end
-            
 endmodule
 
-```
+*RTL LOGIC FOR FLIPFLOPS*
+<img width="1920" height="1200" alt="Screenshot 2025-10-07 143326" src="https://github.com/user-attachments/assets/bb35afbc-e13d-4e86-9e22-fb900f647eba" />
 
-**RTL LOGIC FOR FLIPFLOPS**
+*TIMING DIGRAMS FOR FLIP FLOPS*
+<img width="1920" height="1200" alt="Screenshot 2025-10-07 143720" src="https://github.com/user-attachments/assets/a5ae9e9d-7a3b-437e-9560-51df5fb46af3" />
 
-
-![image](https://github.com/gauthamkrishna7/JKFLIPFLOP-USING-IF-ELSE/assets/141175025/ad0a752d-d3a3-477b-9f59-d1b122300dea)
-
-
-**TIMING DIGRAMS FOR FLIP FLOPS**
-
-
-![image](https://github.com/gauthamkrishna7/JKFLIPFLOP-USING-IF-ELSE/assets/141175025/abc6e138-7081-46dd-92ed-b043845df603)
-
-**RESULT:**
-
-Implementation of JK flipflop using verilog and validating their functionality using their functional tables is executed and the output is verified successfully.
-
-
-
+*RESULTS*
